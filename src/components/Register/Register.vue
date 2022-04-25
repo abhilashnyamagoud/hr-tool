@@ -77,20 +77,25 @@ import axios from 'axios'
         },
         methods:{
             formSubmit(){
-                const formData={
+               const validateForm= this.$refs.form.validate()
+            //    console.log(validateForm)
+               if(validateForm){
+                    const formData={
                     userName:this.userName,
                     email:this.email,
                     password:this.password
                 }
                 console.log(formData)
-                axios.post('localhost:3088/users/register',formData)
+                axios.post('http://localhost:3088/users/register',formData)
                 .then((res)=>{
-                    const result=res.data
+                    const result=res.data       
                     console.log(result)
                 })
                 .catch((err)=>{
                     alert(err.message)
                 })
+               }
+               
             }
         }
     }

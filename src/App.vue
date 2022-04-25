@@ -2,6 +2,7 @@
   <v-app>
     <v-app-bar
       app
+      clipped-left
       color="indigo darken-3"
     >
       <div class="d-flex align-center">
@@ -9,7 +10,6 @@
           class="ma-2"
           text
           color="indigo lighten-4"
-          @click.stop="drawer = !drawer"
         >
          <v-icon
           large
@@ -22,29 +22,25 @@
         </v-btn>
       </div>
     </v-app-bar>
-
-    <v-main>
-        <v-container fliud>
-          <router-view/>
-        </v-container>
-    </v-main>
+    <v-main class="pr-0">
+      <v-container fluid>
         <v-navigation-drawer
-          v-model="drawer"
-          absolute
-          temporary
-          app
+          clipped
+          expand-on-hover
+          permanent
           color="indigo lighten-4"
+          absolute
         >
           <v-list
-            nav
-            dense
+          nav
+          dense
           >
             <router-link to="/dashboard">
               <v-list-item>
                 <v-list-item-icon>
                   <v-icon>mdi-view-dashboard-variant</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>Dashboard</v-list-item-title>
+                  <v-list-item-title>Dashboard</v-list-item-title>
               </v-list-item>
             </router-link>
             <router-link to="/emp">
@@ -57,6 +53,15 @@
             </router-link>
           </v-list>
         </v-navigation-drawer>
+        <v-layout>
+            <v-flex shrink>
+              <div class="routerMain">
+                <router-view/>
+              </div>
+            </v-flex>
+        </v-layout>
+      </v-container>
+    </v-main>  
     <v-footer app fixed color="indigo darken-3">
       <h5>About Us</h5>
     </v-footer>
@@ -69,9 +74,6 @@ export default {
   name: 'App',
 
   data (){
-    return {
-        drawer: null
-      }
   },
 };
 </script>
@@ -81,5 +83,8 @@ export default {
 }
 .v-list-item:hover{
   background-color:#3F51B5;
+}
+.routerMain{
+  padding-left: 40px;
 }
 </style>

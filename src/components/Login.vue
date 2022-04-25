@@ -72,13 +72,14 @@
                         >
                         Login
                         </v-btn>
-
-                        <v-btn
-                        color="green"
-                        class="mr-4"
-                        >
-                        Sign Up
-                        </v-btn>
+                        <router-link   to="/register">
+                            <v-btn
+                            color="green"
+                            class="mr-4"
+                            >
+                                Sign Up
+                            </v-btn>
+                        </router-link>
                     </v-form>
                 </v-card>
             </v-col>
@@ -117,5 +118,8 @@
 }
 .cardTitle{
     color:#3F51B5 ;
+}
+.v-application a{
+  text-decoration: none;
 }
 </style>

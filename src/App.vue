@@ -35,6 +35,15 @@
           nav
           dense
           >
+            <!-- <router-link to="/register">
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon>mdi-account-multiple</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>Register</v-list-item-title>
+                  </v-list-item>
+            </router-link> -->
+
             <router-link to="/dashboard">
               <v-list-item>
                 <v-list-item-icon>
@@ -54,7 +63,7 @@
           </v-list>
         </v-navigation-drawer>
         <v-layout>
-            <v-flex shrink>
+            <v-flex>
               <div class="routerMain">
                 <router-view/>
               </div>
@@ -71,10 +80,7 @@
 <script>
 
 export default {
-  name: 'App',
-
-  data (){
-  },
+  name: 'App'
 };
 </script>
 <style scoped>

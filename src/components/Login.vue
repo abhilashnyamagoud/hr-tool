@@ -1,4 +1,5 @@
 <template>
+     <v-container>
         <v-row>
             <v-col
                 cols="8"
@@ -10,7 +11,6 @@
             <v-img
                 alt="homeimage"
                 src="../assets/hr-trends.webp"  
-                height="auto"
                 max-height="460"
                 min-width="350"          
             >
@@ -32,7 +32,11 @@
                     pt-3
                     color="indigo lighten-4"
                 >
-                    <v-card-title>Login</v-card-title>
+                    <v-card-title>
+                        <div class="cardTitle">
+                            Login
+                        </div>
+                    </v-card-title>
                     <v-form
                     ref="form"
                     v-model="valid"
@@ -62,24 +66,25 @@
 
                         <v-btn
                         :disabled="!valid"
-                        color="success"
+                        color="indigo"
                         class="mr-4"
                         @click="validate"
                         >
                         Login
                         </v-btn>
-                             <router-link   to="/register">
-                        <v-btn
-                        color="error"
-                        class="mr-4"
-                        >
-                        Sign Up
-                        </v-btn>
-                          </router-link>
+                        <router-link   to="/register">
+                            <v-btn
+                            color="green"
+                            class="mr-4"
+                            >
+                                Sign Up
+                            </v-btn>
+                        </router-link>
                     </v-form>
                 </v-card>
             </v-col>
         </v-row>
+     </v-container>
 </template>
 
 <script>
@@ -95,7 +100,7 @@
             password: '',
             passwordRules: {
                 required: value => !!value || 'Required.',
-                min: v => v.length >= 8 || 'Min 8 characters',
+                min: v => v.length >= 6 || 'Min 8 characters',
             }
         }),
 
@@ -110,6 +115,9 @@
 <style lang="css" scoped>
 .v-form{
     padding: 20px;
+}
+.cardTitle{
+    color:#3F51B5 ;
 }
 .v-application a{
   text-decoration: none;

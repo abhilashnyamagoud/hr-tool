@@ -1,10 +1,20 @@
 <template>
-    <div>
+    <v-container>
         <v-row class="d-flex justify-center">
             <v-col
                 cols="12"
                 md="8"
             >
+            <v-card
+            class="mx-auto"
+            outlined
+            color="indigo lighten-4"
+            >
+            <v-card-title>
+                        <div class="cardTitle">
+                            Register
+                        </div>
+                    </v-card-title>
             <v-form
             ref="form"
             v-model="valid"
@@ -41,15 +51,16 @@
             </v-text-field>
             <div class="d-flex justify-center">
             <v-btn 
-            color="warning"
+            color="indigo"
             @click="formSubmit"
             >Submit
             </v-btn>
             </div>
             </v-form>
+            </v-card>
             </v-col>
         </v-row>
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -102,5 +113,10 @@ import axios from 'axios'
 </script>
 
 <style lang="css" scoped>
-
+.v-form{
+    padding: 20px;
+}
+.cardTitle{
+    color:#3F51B5 ;
+}
 </style>

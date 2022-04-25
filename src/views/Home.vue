@@ -1,7 +1,5 @@
 <template>
-    <div class="home">
-        <login/>
-    </div>
+    <login/>
 </template>
 
 <script>
@@ -14,7 +12,5 @@ import Login from '../components/Login.vue'
 </script>
 
 <style lang="css" scoped>
-.home{
-    height: 100%;
-}
+
 </style>

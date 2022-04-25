@@ -1,5 +1,4 @@
 <template>
-     <v-container>
         <v-row>
             <v-col
                 cols="8"
@@ -12,7 +11,8 @@
                 alt="homeimage"
                 src="../assets/hr-trends.webp"  
                 max-height="460"
-                min-width="350"          
+                min-width="260"
+                class="ml-2"          
             >
 
             </v-img>
@@ -27,7 +27,7 @@
                 <v-card
                     class="mt-14 mx-auto logincard"
                     max-width="430"
-                    min-width="330"
+                    min-width="260"
                     outlined
                     pt-3
                     color="indigo lighten-4"
@@ -84,7 +84,6 @@
                 </v-card>
             </v-col>
         </v-row>
-     </v-container>
 </template>
 
 <script>
@@ -114,7 +113,7 @@
 
 <style lang="css" scoped>
 .v-form{
-    padding: 20px;
+    padding: 10px;
 }
 .cardTitle{
     color:#3F51B5 ;

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1> Hello World</h1>
+    <h1> Dashboard</h1>
+     
   </div>
 </template>
 
@@ -10,6 +11,8 @@
   }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
+h1{
+    text-decoration: line-through;
+}
 </style>

@@ -14,14 +14,15 @@ import axios from 'axios'
         methods:{
             getAll(){
                 axios.get("http://localhost:3088/users")
-                .then((res)=>{
+                .then(res=>{
                     const result=res.data
                     console.log(result)
                 })
-                .catch((err)=>{
+                .catch(err=>{
                     alert(err.message)
                 })
             }
+
         }
     }
 </script>

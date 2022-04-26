@@ -6,10 +6,11 @@
     <v-row>
       <v-col>
         <v-card
-          class="mx-auto my-2 rounded-xl"
+          class="mx-auto my-2 rounded-lg"
           max-width="300"
-          elevation = "4"
-          color="blue lighten-2"
+          max-height="150"
+          elevation = "18"
+          id="employeesCard"
         >
         <v-card-title>
           <div>
@@ -26,10 +27,11 @@
       </v-col>
       <v-col>
         <v-card
-          class="mx-auto my-2 rounded-xl"
+          class="mx-auto my-2 rounded-lg"
           max-width="300"
-          elevation = "4"
-          color="purple lighten-1"
+          max-height="150"
+          elevation = "18"
+          id="projectsCard"
         >
         <v-card-title>
           <div>
@@ -37,7 +39,7 @@
           </div>
         </v-card-title>
         <v-card-title>
-          <h3 class="cardTitleValue">230</h3>
+          <h3 class="cardTitleValue">{{this.$store.state.projects.length}}</h3>
         </v-card-title>
         <v-card-text>
           <v-progress-linear value="50" color="blue" height="8"></v-progress-linear>
@@ -46,10 +48,11 @@
       </v-col>
       <v-col>
         <v-card
-          class="mx-auto my-2 rounded-xl"
+          class="mx-auto my-2 rounded-lg"
           max-width="300"
-          elevation = "4"
-          color="teal lighten-1"
+          max-height="150"
+          elevation = "18"
+          id="tasksCard"
         >
         <v-card-title>
           <div>
@@ -96,6 +99,10 @@ import TodoList from '../components/TodoList/TodoList.vue'
 .componentTitle{
   padding-left: 20px;
 }
+.v-card__title{
+  padding-top:8px;
+  padding-bottom: 8px;
+}
 .cardTitleMain{
   color:white;
 }
@@ -105,5 +112,18 @@ import TodoList from '../components/TodoList/TodoList.vue'
 .projectsTable{
   padding-left: 20px;
 }
+#employeesCard{
+  background: rgb(9,187,215);
+  background: linear-gradient(66deg, rgba(9,187,215,1) 0%, rgba(4,147,160,1) 100%);
+}
+#projectsCard{
+  background: rgb(126,5,163);
+  background: linear-gradient(66deg, rgba(126,5,163,1) 0%, rgba(221,0,241,1) 100%);
+}
+#tasksCard{
+  background: rgb(9,215,101);
+  background: linear-gradient(66deg, rgba(9,215,101,1) 0%, rgba(4,122,55,1) 100%);
+}
+
 
 </style>

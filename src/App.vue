@@ -26,6 +26,7 @@
       <v-container fluid>
         <v-navigation-drawer
           clipped-left
+          fixed
           expand-on-hover
           permanent
           color="indigo lighten-4"

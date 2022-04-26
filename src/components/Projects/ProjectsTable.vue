@@ -20,69 +20,45 @@
 </template>
 
 <script>
-    export default {
-        data () {
+import axios from 'axios';
+export default {
+    data () {
         return {
             search: '',
             headers: [
             {
                 text: 'Project',
                 align: 'start',
-                sortable: false,
-                value: 'ProjectName',
+                value: 'projectName',
             },
-            { text: 'Deadline', value: 'deadLine' },
             { text: 'Client', value: 'clientName' },
+            { text: 'Deadline', value: 'deadLine' },
             { text: 'Status', value: 'status' }
             ],
-            ProjectData: [
-                {
-                    ProjectName: 'Project A',
-                    deadline: '15/01/2022',
-                    clientName: 'Client A',
-                    status: "Completed",
-                },
-                {
-                    ProjectName: 'Project B',
-                    deadline: '15/02/2022',
-                    clientName: 'Client B',
-                    status: "Progress",
-                },
-                {
-                    ProjectName: 'Project C',
-                    deadline: '15/01/2022',
-                    clientName: 'Client C',
-                    status: "Completed",
-                },
-                {
-                    ProjectName: 'Project D',
-                    deadline: '15/01/2022',
-                    clientName: 'Client D',
-                    status: "Completed",
-                },
-                {
-                    ProjectName: 'Project E',
-                    deadline: '15/01/2022',
-                    clientName: 'Client E',
-                    status: "Failed",
-                },
-                {
-                    ProjectName: 'Project F',
-                    deadline: '15/01/2022',
-                    clientName: 'Client F',
-                    status: "Completed",
-                },
-                {
-                    ProjectName: 'Project G',
-                    deadline: '15/01/2022',
-                    clientName: 'Client G',
-                    status: "Completed",
-                },
-           
-            ],
+            ProjectData:[],
         }
     },
+    methods:{
+        getAllProjects(){
+            axios.get("http://localhost:3088/projects/all")
+            .then(res=>{
+                const result=res.data
+                this.ProjectData = result
+                console.log(this.ProjectData)
+                this.$store.dispatch('addProjects',this.ProjectData)
+            })
+            .catch(err=>{
+                console.log(err.message)
+            })
+        }
+
+    },
+    mounted:function(){
+        this.getAllProjects()
+        
     }
+    
+}
 </script>
 
 <style lang="css" scoped>

@@ -42,7 +42,6 @@
                   v-model="leaveType"
           :items="['sick leave','causual leave','medical leave']"
           label="Leave Type"
-          :rules="fromDateRules"
           required
         ></v-select>
         <!-- <pre>{{leaveType}} </pre> -->
@@ -193,12 +192,7 @@ import axios from 'axios'
                 leaveTypeRules:[
                      v => !!v || 'Leave type is required'
                 ],
-                fromDateRules:[
-                     v => !!v || 'Field is required'
-                ],
-                toDateRules:[
-                     v => !!v || 'Field is required'
-                ],
+               
 
             }
         },

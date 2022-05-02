@@ -7,6 +7,8 @@ import Register from '../components/Register/Register.vue'
 import AddEmployee from '../components/Employee/AddEmployee.vue';
 import LeaveManagement from '../views/LeaveManagement.vue'
 import AddLeave from '../components/Leave/AddLeave.vue'
+import Holidays from '../views/Holidays.vue'
+import AddHoliday from '../components/Holiday/AddHoliday.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +48,16 @@ const routes = [
     path:'/addLeave',
     name:"addLeave",
     component:AddLeave
+  },
+  {
+    path:'/holiday',
+    name:"Holiday",
+    component:Holidays
+  },
+  {
+    path:'/holidayForm',
+    name:"holidayForm",
+    component:AddHoliday
   }
   
 ]

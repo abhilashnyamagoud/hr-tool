@@ -5,6 +5,7 @@
       clipped-left
       color="indigo darken-3"
     >
+    
       <div class="d-flex align-center">
         <v-btn
           class="ma-2"
@@ -21,6 +22,16 @@
           HR TOOL
         </v-btn>
       </div>
+      <div class="ml-auto mt-4">
+            <v-switch
+      
+        v-model="$vuetify.theme.dark"
+        inset
+        label="Dark Mode"
+        persistent-hint
+      ></v-switch>
+      </div>
+
     </v-app-bar>
     <v-main class="pr-0">
       <v-container fluid>
@@ -57,6 +68,14 @@
                   <v-icon>mdi-assistant</v-icon>
                 </v-list-item-icon>
                   <v-list-item-title>Leave Management</v-list-item-title>
+              </v-list-item>
+            </router-link>
+            <router-link to="/holiday">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-web-clock</v-icon>
+                </v-list-item-icon>
+                  <v-list-item-title>Holiday</v-list-item-title>
               </v-list-item>
             </router-link>
           </v-list>

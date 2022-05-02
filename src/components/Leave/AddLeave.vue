@@ -44,7 +44,6 @@
           label="Leave Type"
           required
         ></v-select>
-        <!-- <pre>{{leaveType}} </pre> -->
             </v-col>
         </v-row>
         <v-row>
@@ -91,7 +90,6 @@
           </v-btn>
         </v-date-picker>
       </v-menu>
-      <!-- <pre>{{fromDate}} </pre> -->
             </v-col>
             <v-col cols="6">
                       <v-menu
@@ -135,7 +133,6 @@
           </v-btn>
         </v-date-picker>
       </v-menu>
-      <!-- <pre>{{toDate}} </pre> -->
             </v-col>
         </v-row>
         <v-row>
@@ -192,8 +189,6 @@ import axios from 'axios'
                 leaveTypeRules:[
                      v => !!v || 'Leave type is required'
                 ],
-               
-
             }
         },
         methods:{

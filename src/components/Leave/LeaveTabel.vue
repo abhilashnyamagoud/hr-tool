@@ -360,3 +360,7 @@ import axios from 'axios'
     },
   }
 </script>
+
+<style lang='css' scoped>
+
+</style>

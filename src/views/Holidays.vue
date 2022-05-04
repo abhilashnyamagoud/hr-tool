@@ -27,4 +27,8 @@ import HolidayList from '../components/Holiday/HolidayList.vue'
 .v-application a{
   text-decoration: none;
 }
+.head{
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+color: rgb(157, 25, 157);
+}
 </style>

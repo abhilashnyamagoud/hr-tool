@@ -42,7 +42,7 @@
           <h3 class="cardTitleValue">{{this.$store.state.projects.length}}</h3>
         </v-card-title>
         <v-card-text>
-          <v-progress-linear value="50" color="blue" height="8"></v-progress-linear>
+          <v-progress-linear v-model="projectLength" color="blue" height="8"></v-progress-linear>
         </v-card-text>
         </v-card>
       </v-col>
@@ -87,10 +87,33 @@
 <script>
 import ProjectsTable from '../components/Projects/ProjectsTable.vue'
 import TodoList from '../components/TodoList/TodoList.vue'
+import { mapGetters } from 'vuex'
   export default {
+    data(){
+      return{
+        projectLength : null,
+      }
+    },
     components:{
       ProjectsTable,
       TodoList
+    },
+    computed:{
+      ...mapGetters(['projects']),
+      // getData(){
+      //   this.projectLength = this.projects.length
+      // },
+      projectL:function(){
+        return this.projects.length;
+      }
+    },
+    // watch:{
+    //   projectLength : function(newValue,oldValue){
+    //     this.projectLength = this.$store.state.projects.length
+    //   }
+    // },
+    mounted:function(){
+      this.projectLength = this.projectL
     }
   }
 </script>

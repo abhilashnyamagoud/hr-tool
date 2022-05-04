@@ -59,6 +59,22 @@
                   <v-list-item-title>Leave Management</v-list-item-title>
               </v-list-item>
             </router-link>
+            <router-link to="/projects">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-briefcase-variant</v-icon>
+                </v-list-item-icon>
+                  <v-list-item-title>Projects</v-list-item-title>
+              </v-list-item>
+            </router-link>
+            <router-link to="/events">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-calendar</v-icon>
+                </v-list-item-icon>
+                  <v-list-item-title>Events</v-list-item-title>
+              </v-list-item>
+            </router-link>
           </v-list>
         </v-navigation-drawer>
           <v-layout>

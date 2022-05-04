@@ -8,6 +8,9 @@ export default new Vuex.Store({
     projects:[]
   },
   getters: {
+    projects:state => {
+      return state.projects
+    }
   },
   mutations: {
     addProjects (state, data) {

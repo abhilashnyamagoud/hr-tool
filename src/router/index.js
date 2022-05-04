@@ -7,6 +7,8 @@ import Register from '../components/Register/Register.vue'
 import AddEmployee from '../components/Employee/AddEmployee.vue';
 import LeaveManagement from '../views/LeaveManagement.vue'
 import AddLeave from '../components/Leave/AddLeave.vue'
+import Projects from '../views/Projects.vue'
+import Events from '../views/Events.vue'
 
 Vue.use(VueRouter)
 
@@ -46,7 +48,17 @@ const routes = [
     path:'/addLeave',
     name:"addLeave",
     component:AddLeave
-  }
+  },
+  {
+    path:'/projects',
+    name:"Projects",
+    component:Projects
+  },
+  {
+    path:'/events',
+    name:"Events",
+    component:Events
+  },
   
 ]
 

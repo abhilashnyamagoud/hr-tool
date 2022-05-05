@@ -9,6 +9,7 @@ import LeaveManagement from '../views/LeaveManagement.vue'
 import AddLeave from '../components/Leave/AddLeave.vue'
 import Holidays from '../views/Holidays.vue'
 import AddHoliday from '../components/Holiday/AddHoliday.vue'
+import EventsCalender from '../components/Events/EventsCalender.vue'
 
 Vue.use(VueRouter)
 
@@ -58,6 +59,11 @@ const routes = [
     path:'/holidayForm',
     name:"holidayForm",
     component:AddHoliday
+  },
+  {
+    path:'/event',
+    name:"Event",
+    component:EventsCalender
   }
   
 ]
@@ -67,5 +73,9 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+
+
+
 
 export default router

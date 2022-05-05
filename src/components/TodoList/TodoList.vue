@@ -33,9 +33,9 @@
                             max-width="30"
                         ></v-text-field>
                     </v-col>
-                    <v-col cols="2" class="pl-2">
+                    <v-col cols="2" class="pl-2 mt-2">
                         <v-btn icon @click="addTodos()">
-                            <v-icon color="teal">mdi-pencil-plus</v-icon>
+                            <v-icon color="teal">mdi-plus-thick</v-icon>
                         </v-btn>
                     </v-col>
                     

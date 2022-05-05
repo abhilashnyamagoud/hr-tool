@@ -100,7 +100,7 @@ import axios from 'axios'
                 axios.post('http://localhost:3088/users/register',formData)
                 .then((res)=>{
                     const result=res.data       
-                    console.log(result)
+                    console.log('fetched',result)
                 })
                 .catch((err)=>{
                     alert(err.message)

@@ -14,13 +14,13 @@ import EventsCalender from '../components/Events/EventsCalender.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
+  { 
+    path: '/login',
     name: 'Home',
     component: Home
   },
   {
-    path: '/dashboard',
+    path: '/',
     name: 'Dashboard',
     component: Dashboard,
     

@@ -15,7 +15,6 @@
                 class="ml-5"  
                         
             >
-
             </v-img>
             </v-col>
             <v-col

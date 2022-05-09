@@ -8,7 +8,7 @@
              class="mx-2"  
              elevation="10" 
             >
-            <router-link to="/employeeForm">Add Employee </router-link>
+            <router-link  to="/employeeForm">Add Employee </router-link>
             </v-btn>
             <v-btn color="indigo" elevation="10" class="mx-2" @click="view='listView' " >
                 List View 

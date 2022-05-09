@@ -52,27 +52,28 @@
             <v-col
             cols="6"
             >
-            
-            <v-text-field 
-            v-model="designation"
-            :rules="designationRules"
-            label="designation"
-            required
-            >
-            </v-text-field>
+             <v-select
+                  v-model="designation"
+          :items="['Trainee Engineer','Software Engineer','Senior-Software Engineer','Manager','Architect']"
+          label="Designation"
+          :rules="designationRules"
+          required
+        ></v-select>
+           <!-- <pre>{{designation}} </pre> -->
             </v-col>
         </v-row>
             <v-row>
                 <v-col
                 cols="6"
                 >
-            <v-text-field
-            v-model="department"
-            :rules="departmentRules"
-            label="department"
-            required
-            >
-            </v-text-field>
+                 <v-select
+                  v-model="department"
+          :items="['Micro-services(COE)','HR','Azure','AWS','Cyber-Security','ITIS','Sales-force']"
+          label="department"
+          :rules="departmentRules"
+          required
+        ></v-select>
+           <!-- <pre>{{department}} </pre> -->
                 </v-col>
                 <v-col 
                 cols="6"
@@ -89,45 +90,117 @@
 
             <v-row>
                 <v-col cols="6">
-                    <v-text-field 
-                    v-model="location"
-                    :rules="locationRules"
-                    label="location"
-                    required
-                    >
-                    </v-text-field>
+                      <v-select
+                  v-model="location"
+          :items="['Bangalore','Hydrabad']"
+          label="Location"
+          :rules="locationRules"
+          required
+        ></v-select>
+                 <!-- <pre>{{location}} </pre> -->
                 </v-col>
                 <v-col 
                 cols="6"
                 >
-                <v-text-field
-                v-model="joinedDate"
-                :rules="joinedDateRules"
-                label="joinedDate YYYY-MM-DD"
-                required
-                > 
-                </v-text-field>
+                 <v-menu
+        ref="menu"
+        v-model="menu"
+        :close-on-content-click="false"
+        :return-value.sync="joinedDate"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="joinedDate"
+            label="joined Date"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="joinedDate"
+          no-title
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="menu = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.menu.save(joinedDate)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-menu>
+
                 </v-col>
 
             </v-row>
             <v-row>
                 <v-col cols="6">
-                    <v-text-field
-                    v-model="dob"
-                    :rules="dobRules"
-                    label="Date Of Birth"
-                    required
-                    >
-                    </v-text-field>
+                     <v-menu
+        ref="menu1"
+        v-model="menu1"
+        :close-on-content-click="false"
+        :return-value.sync="dob"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="dob"
+            label="Date of birth"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="dob"
+          no-title
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="menu1 = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.menu1.save(dob)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-menu>
+                  <!-- <pre>{{dob}} </pre> -->
                 </v-col>
                 <v-col cols="6">
-                    <v-text-field
-                    v-model="education"
-                    :rules="educationRules"
-                    label="Education"
-                    required
-                    >
-                    </v-text-field>
+                     <v-select
+                  v-model="education"
+          :items="['BE','B-tech','MBA','BBA','M-tech','B-com','M-com','Other']"
+          label="Education"
+          :rules="educationRules"
+          required
+        ></v-select>
+                   <!-- <pre>{{education}} </pre> -->
                 </v-col>
             </v-row>
 
@@ -165,6 +238,8 @@
     export default {
         data(){
             return{
+                menu:false,
+                menu1:false,
                 valid:true,
                 fullName:'',
                 employesId:'',
@@ -173,7 +248,7 @@
                 department:'',
                 manager:'',
                 location:'',
-                joinedDate:'',
+                joinedDate:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
                 dob:'',
                 education:'',
                 mobile:'',
@@ -198,13 +273,7 @@
                 ],
                 locationRules:[
                      v => !!v || 'Location is required'
-                ],
-                joinedDateRules:[
-                    v => !!v || 'joinedDate is required'
-                ],
-                dobRules:[
-                    v => !!v || 'Date of Birth is required'
-                ],
+                ],            
                 educationRules:[
                     v => !!v || 'Education field is required'
                 ],

@@ -46,7 +46,7 @@
           <v-list
           nav
           >
-            <router-link to="/dashboard">
+            <router-link to="/">
               <v-list-item>
                 <v-list-item-icon>
                   <v-icon>mdi-view-dashboard-variant</v-icon>

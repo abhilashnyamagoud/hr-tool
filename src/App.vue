@@ -106,7 +106,8 @@
       </v-container>
     </v-main>  
     <v-footer app fixed color="indigo darken-3">
-      <h5>About Us</h5>
+      <!-- <h5>About Us</h5> -->
+      <router-link to="/about" class="link">About Tool </router-link>
     </v-footer>
   </v-app>
 </template>
@@ -114,18 +115,24 @@
 <script>
 import Home from './views/Home.vue'
 
+
 export default {
   name: 'App',
   components:{
     Home
-
   },
+  mounted(){
+      this.$store.dispatch('addEmp')          
+  }
  
 };
 
 
 </script>
 <style scoped>
+.link{
+  color: black;
+}
 .v-application a{
   text-decoration: none;
 }

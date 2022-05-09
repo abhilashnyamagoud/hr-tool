@@ -18,10 +18,10 @@
           </div>
         </v-card-title>
         <v-card-title>
-          <h3 class="cardTitleValue">560</h3>
+          <h3 class="cardTitleValue red pa-1 border-r">{{this.$store.state.employees.length}} </h3>
         </v-card-title>
         <v-card-text>
-          <v-progress-linear value="15" color="green" height="8"></v-progress-linear>
+          <v-progress-linear v-model="empLength" color="green" height="8"></v-progress-linear>
         </v-card-text>
         </v-card>
       </v-col>
@@ -39,7 +39,7 @@
           </div>
         </v-card-title>
         <v-card-title>
-          <h3 class="cardTitleValue">{{this.$store.state.projects.length}}</h3>
+          <h3 class="cardTitleValue red pa-1 border-r">{{this.$store.state.projects.length}}</h3>
         </v-card-title>
         <v-card-text>
           <v-progress-linear v-model="projectLength" color="blue" height="8"></v-progress-linear>
@@ -60,7 +60,7 @@
           </div>
         </v-card-title>
         <v-card-title>
-            <h3 class="cardTitleValue">780</h3>
+            <h3 class="cardTitleValue red pa-1 border-r">780</h3>
         </v-card-title>
         <v-card-text>
           <v-progress-linear value="35" color="orange accent-3" height="8"></v-progress-linear>
@@ -92,28 +92,28 @@ import { mapGetters } from 'vuex'
     data(){
       return{
         projectLength : null,
+        empLength1:null
       }
     },
     components:{
-      ProjectsTable,
+      ProjectsTable,  
       TodoList
     },
     computed:{
-      ...mapGetters(['projects']),
-      // getData(){
-      //   this.projectLength = this.projects.length
-      // },
+      ...mapGetters(['projects','empLength']),
+      // ...mapState(['employees']),
+    
       projectL:function(){
         return this.projects.length;
+      },
+      emplLength:function(){
+        return this.empLength
       }
     },
-    // watch:{
-    //   projectLength : function(newValue,oldValue){
-    //     this.projectLength = this.$store.state.projects.length
-    //   }
-    // },
+    
     mounted:function(){
       this.projectLength = this.projectL
+      this.empLength1=this.emplLength
     }
   }
 </script>
@@ -121,6 +121,9 @@ import { mapGetters } from 'vuex'
 <style lang="css" scoped>
 .componentTitle{
   padding-left: 20px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 30px;
+  color: red;
 }
 .v-card__title{
   padding-top:8px;
@@ -146,6 +149,9 @@ import { mapGetters } from 'vuex'
 #tasksCard{
   background: rgb(9,215,101);
   background: linear-gradient(66deg, rgba(9,215,101,1) 0%, rgba(4,122,55,1) 100%);
+}
+.border-r{
+  border-radius: 20px;
 }
 
 

@@ -15,25 +15,19 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
+import {mapState} from 'vuex';
     export default {
         data(){
             return{
                 empData:[]
             }
         },
+        computed:{
+            ...mapState(['employees'])
+        },
         
         mounted(){
-             axios.get('http://localhost:3088/api/employes')
-            .then((res)=>{
-                const result=res.data
-                // console.log("data",result)
-                this.empData=result
-
-            })
-            .catch((err)=>{
-                alert(err.message)
-            })
+            this.empData=this.employees
         }
     }
 </script>

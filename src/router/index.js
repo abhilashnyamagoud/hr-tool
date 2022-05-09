@@ -11,6 +11,7 @@ import Holidays from '../views/Holidays.vue'
 import AddHoliday from '../components/Holiday/AddHoliday.vue'
 import EventsCalender from '../components/Events/EventsCalender.vue'
 import Projects from '../views/Projects.vue'
+import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -160,6 +161,11 @@ const routes = [
         to="/"
       }
     },
+  },
+  {
+    path:'/about',
+    name:"about",
+    component:About
   }
   
 ]

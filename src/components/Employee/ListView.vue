@@ -187,6 +187,7 @@
 
 <script>
 import axios from 'axios'
+import {mapState} from 'vuex'
   export default {
     data: () => ({
       dialog: false,
@@ -244,6 +245,7 @@ import axios from 'axios'
       formTitle () {
         return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
       },
+      ...mapState(['employees'])
     },
 
     watch: {
@@ -255,15 +257,8 @@ import axios from 'axios'
       },
     },
      mounted(){
-            axios.get('http://localhost:3088/api/employes')
-            .then((res)=>{
-                const result=res.data
-                // console.log("data",result)
-                this.desserts=result
-            })
-            .catch((err)=>{
-                alert(err.message)
-            })
+       this.desserts=this.employees
+        
     },
 
     methods: { 

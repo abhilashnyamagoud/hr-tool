@@ -10,6 +10,7 @@ import AddLeave from '../components/Leave/AddLeave.vue'
 import Holidays from '../views/Holidays.vue'
 import AddHoliday from '../components/Holiday/AddHoliday.vue'
 import EventsCalender from '../components/Events/EventsCalender.vue'
+import Projects from '../views/Projects.vue'
 
 Vue.use(VueRouter)
 
@@ -24,55 +25,141 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    // beforeEach(to, from, next){
-    //   from('/')
-    //   if(sessionStorage.length > 0){
-    //     next()
-    //   }else{
-    //     next('/')
-    //   }
-    // }
-    
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path: '/emp',
     name: 'Employees',
-    component: Employees
+    component: Employees,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path:'/register',
     name:'Register',
-    component:Register
+    component:Register,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path:'/employeeForm',
     name:"Employee form",
-    component:AddEmployee
+    component:AddEmployee,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path:'/leaveManagement',
     name:'leaveManagement',
-    component:LeaveManagement
+    component:LeaveManagement,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
+  },
+  {
+    path:'/projects',
+    name:'Projects',
+    component:Projects,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path:'/addLeave',
     name:"addLeave",
-    component:AddLeave
+    component:AddLeave,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path:'/holiday',
     name:"Holiday",
-    component:Holidays
+    component:Holidays,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path:'/holidayForm',
     name:"holidayForm",
-    component:AddHoliday
+    component:AddHoliday,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   },
   {
     path:'/event',
     name:"Event",
-    component:EventsCalender
+    component:EventsCalender,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
   }
   
 ]

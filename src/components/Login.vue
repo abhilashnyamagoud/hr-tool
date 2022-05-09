@@ -109,24 +109,34 @@ import axios from 'axios'
             login() {
                 const validate= this.$refs.form.validate()
 
-                    if(validate){
-                        const loginData={
-                            email:this.email,
-                            password:this.password
-                        }
-                        console.log(loginData)
-                        axios.post('http://localhost:3088/users/login',loginData)
-                        .then((res)=>{
-                            const result=res.data
-                            console.log('token',result)
-                            sessionStorage.setItem('token',JSON.stringify(result.token))
-                        })
-                        .catch((err)=>{
-                            alert(err.message)
-                        })
+                if(validate){
+                    const loginData={
+                        email:this.email,
+                        password:this.password
                     }
+                    console.log(loginData)
+                    let response = axios.post('http://localhost:3088/users/login',loginData)
+                    .then((res)=>{
+                        const result=res.data
+                        console.log('token',result)  
+                    })
+                    .catch((err)=>{
+                        alert(err.message)
+                    })
+                    if(response.status == 200 && response.data) {
+                        sessionStorage.setItem('token',JSON.stringify(result.token))
+                        this.$router.push("/dashboard");
+                    }
+                }
             },
         },
+        mounted() {
+        let user = sessionStorage.getItem("token");
+        if (user) {
+            this.$router.push("/dashboard");
+        }
+  },
+
     }
 </script>
 

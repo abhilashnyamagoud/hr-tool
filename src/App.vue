@@ -5,6 +5,7 @@
       clipped-left
       color="indigo darken-3"
     >
+    
       <div class="d-flex align-center">
         <v-btn
           class="ma-2"
@@ -21,10 +22,20 @@
           HR TOOL
         </v-btn>
       </div>
+      <div class="ml-auto mt-4">
+            <v-switch
+      
+        v-model="$vuetify.theme.dark"
+        inset
+        label="Dark Mode"
+        persistent-hint
+      ></v-switch>
+      </div>
+
     </v-app-bar>
     <v-main class="pr-0">
       <v-container fluid>
-        <v-navigation-drawer
+        <v-navigation-drawer 
           clipped-left
           fixed
           expand-on-hover
@@ -59,20 +70,20 @@
                   <v-list-item-title>Leave Management</v-list-item-title>
               </v-list-item>
             </router-link>
-            <router-link to="/projects">
+            <router-link to="/holiday">
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon>mdi-briefcase-variant</v-icon>
+                  <v-icon>mdi-web-clock</v-icon>
                 </v-list-item-icon>
-                  <v-list-item-title>Projects</v-list-item-title>
+                  <v-list-item-title>Holiday</v-list-item-title>
               </v-list-item>
             </router-link>
-            <router-link to="/events">
+              <router-link to="/event">
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon>mdi-calendar</v-icon>
+                  <v-icon>mdi-calendar-clock</v-icon>
                 </v-list-item-icon>
-                  <v-list-item-title>Events</v-list-item-title>
+                  <v-list-item-title>Event</v-list-item-title>
               </v-list-item>
             </router-link>
           </v-list>
@@ -93,10 +104,18 @@
 </template>
 
 <script>
+import Home from './views/Home.vue'
 
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    Home
+
+  },
+ 
 };
+
+
 </script>
 <style scoped>
 .v-application a{

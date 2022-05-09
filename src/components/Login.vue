@@ -12,7 +12,8 @@
                 src="../assets/hr-trends.webp"  
                 max-height="460"
                 min-width="260"
-                class="ml-2"          
+                class="ml-5"  
+                        
             >
 
             </v-img>
@@ -68,11 +69,11 @@
                         :disabled="!valid"
                         color="indigo"
                         class="mr-4"
-                        @click="validate"
+                        @click="login"
                         >
                         Login
                         </v-btn>
-                        <router-link   to="/register">
+                        <router-link  to="/register">
                             <v-btn
                             color="green"
                             class="mr-4"
@@ -87,6 +88,7 @@
 </template>
 
 <script>
+import axios from 'axios'
     export default {
         data: () => ({
             valid: true,
@@ -104,8 +106,25 @@
         }),
 
         methods: {
-            validate () {
-                this.$refs.form.validate()
+            login() {
+                const validate= this.$refs.form.validate()
+
+                    if(validate){
+                        const loginData={
+                            email:this.email,
+                            password:this.password
+                        }
+                        console.log(loginData)
+                        axios.post('http://localhost:3088/users/login',loginData)
+                        .then((res)=>{
+                            const result=res.data
+                            console.log('token',result)
+                            sessionStorage.setItem('token',JSON.stringify(result.token))
+                        })
+                        .catch((err)=>{
+                            alert(err.message)
+                        })
+                    }
             },
         },
     }

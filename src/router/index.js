@@ -7,8 +7,9 @@ import Register from '../components/Register/Register.vue'
 import AddEmployee from '../components/Employee/AddEmployee.vue';
 import LeaveManagement from '../views/LeaveManagement.vue'
 import AddLeave from '../components/Leave/AddLeave.vue'
-import Projects from '../views/Projects.vue'
-import Events from '../views/Events.vue'
+import Holidays from '../views/Holidays.vue'
+import AddHoliday from '../components/Holiday/AddHoliday.vue'
+import EventsCalender from '../components/Events/EventsCalender.vue'
 
 Vue.use(VueRouter)
 
@@ -59,15 +60,20 @@ const routes = [
     component:AddLeave
   },
   {
-    path:'/projects',
-    name:"Projects",
-    component:Projects
+    path:'/holiday',
+    name:"Holiday",
+    component:Holidays
   },
   {
-    path:'/events',
-    name:"Events",
-    component:Events
+    path:'/holidayForm',
+    name:"holidayForm",
+    component:AddHoliday
   },
+  {
+    path:'/event',
+    name:"Event",
+    component:EventsCalender
+  }
   
 ]
 
@@ -76,5 +82,9 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+
+
+
 
 export default router

@@ -249,6 +249,7 @@
                         this.dob=''
                         this.education=''
                         this.mobile=''
+                         this.$router.push('/emp')
                     })
                     .catch((err)=>{
                         alert(err.message)

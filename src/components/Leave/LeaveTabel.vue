@@ -1,5 +1,4 @@
 <template>
-
   <v-data-table
     :headers="headers"
     :items="desserts"
@@ -25,7 +24,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.fullName"
+                      v-model="editedItem.firstName"
+                      :rules="firstNameRules"
                       label="Full Name"
                     ></v-text-field>
                   </v-col>
@@ -35,8 +35,9 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.employesId"
+                      v-model="editedItem.lastName"
                       label="Employee ID"
+                      :rules="lastNameRules"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -45,7 +46,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.orgEmail"
+                      v-model="editedItem.employeeId"
+                      :rules="employeeIdRules"
                       label="Company Mail"
                     ></v-text-field>
                   </v-col>
@@ -54,20 +56,107 @@
                     sm="6"
                     md="4"
                   >
-                    <v-text-field
-                      v-model="editedItem.designation"
-                      label="Designation"
-                    ></v-text-field>
+                    <v-select
+                  v-model="editedItem.leaveType"
+          :items="['sick leave','causual leave','medical leave']"
+          label="Leave Type"
+          :rules="leaveTypeRules"
+          required
+        ></v-select>
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
                     md="4"
                   >
-                    <v-text-field
-                      v-model="editedItem.department"
-                      label="Department"
-                    ></v-text-field>
+                   <v-menu
+        ref="menu"
+        v-model="menu"
+        :close-on-content-click="false"
+        :return-value.sync="editedItem.fromDate"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="editedItem.fromDate"
+            label="Picker in menu"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="editedItem.fromDate"
+          no-title
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="menu = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.menu.save(editedItem.fromDate)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-menu>
+                  </v-col>
+                    <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                   <v-menu
+        ref="menu1"
+        v-model="menu1"
+        :close-on-content-click="false"
+        :return-value.sync="editedItem.toDate"
+        transition="scale-transition"
+        offset-y
+        min-width="auto"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="editedItem.toDate"
+            label="Picker in menu"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="editedItem.toDate"
+          no-title
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="menu1 = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.menu1.save(editedItem.toDate)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-menu>
                   </v-col>
                     <v-col
                     cols="12"
@@ -75,60 +164,11 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.manager"
-                      label="Manager"
-                    ></v-text-field>
-                  </v-col>
-                    <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.location"
+                      v-model="editedItem.remarks"
                       label="Location"
                     ></v-text-field>
                   </v-col>
-                    <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.joinedDate"
-                      label="Joined Date"
-                    ></v-text-field>
-                  </v-col>
-                    <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.dob"
-                      label="Date of birth"
-                    ></v-text-field>
-                  </v-col>
-                    <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.education"
-                      label="Education"
-                    ></v-text-field>
-                  </v-col>
-                    <v-col
-                    cols="12"
-                    sm="6"
-                    md="4"
-                  >
-                    <v-text-field
-                      v-model="editedItem.mobile"
-                      label="Mobile Number"
-                    ></v-text-field>
-                  </v-col>
+    
                 </v-row>
               </v-container>
             </v-card-text>
@@ -182,61 +222,58 @@
       </v-icon>
     </template>
   </v-data-table>
-
 </template>
 
 <script>
 import axios from 'axios'
   export default {
     data: () => ({
+      menu:false,
+                menu1:false,
       dialog: false,
       dialogDelete: false,
+       firstNameRules:[
+                     v => !!v || 'FirstName is required'
+                ],
+                lastNameRules:[
+                     v => !!v || 'LastName is required'
+                ],
+                employeeIdRules:[
+                     v => !!v || 'Employee Id is required'
+                ],
+                leaveTypeRules:[
+                     v => !!v || 'Leave type is required'
+                ],
       headers: [
-          {
-            text: 'FullName',
-            align: 'start',
-            sortable: true,
-            value: 'fullName',
-          },
-          { text: 'Employee ID', value: 'employesId', sortable:true },
-          { text: 'Company Email', value: 'orgEmail', sortable:true },
-          { text: 'Designation', value: 'designation' , sortable:true},
-          { text: 'Department', value: 'department' , sortable:true},
-          { text: 'Manager', value: 'manager', sortable:true },
-          {text:'Location', value:'location' , sortable:true},
-          {text:'JoinedDate', value:'joinedDate' , sortable:true},
-          {text:'Birth Date',value:'dob', sortable:true},
-          {text:'Education',value:'education', sortable:true},
-          {text:'Mobile',value:'mobile', sortable:true},
+         { text: 'FirstName', align: 'start',  sortable: true,value: 'firstName',},
+                      { text: 'LastName',sortable: true, value: 'lastName',},
+                      { text: 'employee Id',sortable: true,value: 'employeeId',},{ text: 'Leave Type',  sortable: true,value: 'leaveType' },
+                     {  text: 'From Date', sortable: true, value: 'fromDate',},
+                     { text: 'To Date', sortable: true, value: 'toDate',},
+                     {text: 'Remarks',sortable: true,value: 'remarks',},
           { text: 'Actions', value: 'actions', sortable: false },
         ],
       desserts: [],
       editedIndex: -1,
       editedItem: {
-       fullName:'',
+       firstName:'',
+                lastName:'',
                 employesId:'',
-                orgEmail:'',
-                designation:'',
-                department:'',
-                manager:'',
+                leaveType:'',
+                fromDate:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+                toDate:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
                 location:'',
-                joinedDate:'',
-                dob:'',
-                education:'',
-                mobile:''
+                remarks:'',
       },
       defaultItem: {
-              fullName:'',
+              firstName:'',
+                lastName:'',
                 employesId:'',
-                orgEmail:'',
-                designation:'',
-                department:'',
-                manager:'',
+                leaveType:'',
+                fromDate:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+                toDate:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
                 location:'',
-                joinedDate:'',
-                dob:'',
-                education:'',
-                mobile:''
+                remarks:'',
       },
     }),
 
@@ -255,10 +292,9 @@ import axios from 'axios'
       },
     },
      mounted(){
-            axios.get('http://localhost:3088/api/employes')
+            axios.get('http://localhost:3088/leaveManagement/leaves')
             .then((res)=>{
                 const result=res.data
-                // console.log("data",result)
                 this.desserts=result
             })
             .catch((err)=>{
@@ -280,10 +316,9 @@ import axios from 'axios'
       },
 
       deleteItemConfirm () {
-          // console.log(this.editedItem)
-        axios.delete(`http://localhost:3088/api/employes/${this.editedItem._id}`)
+        axios.delete(`http://localhost:3088/leaveManagement/${this.editedItem._id}`)
         .then((res)=>{
-          console.log(res.data)
+          console.log('deleted',res.data)
         })
         .catch((err)=>{
           alert(err.message)
@@ -310,11 +345,10 @@ import axios from 'axios'
 
       save () {
         if (this.editedIndex > -1) {
-          // console.log(this.editedItem._id)
-          axios.put(`http://localhost:3088/api/employes/${this.editedItem._id}`,this.editedItem)
+          // console.log(this.editedItem)
+          axios.put(`http://localhost:3088/leaveManagement/${this.editedItem._id}`,this.editedItem)
           .then((res)=>{
-            const result=res.data
-            console.log(result)
+            console.log('fetchedr',res.data)
           })
           .catch((err)=>{
             alert(err.message)
@@ -326,3 +360,7 @@ import axios from 'axios'
     },
   }
 </script>
+
+<style lang='css' scoped>
+
+</style>

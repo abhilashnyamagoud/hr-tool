@@ -82,7 +82,6 @@
                 @click:event="showEvent"
                 @click:more="viewDay"
                 @click:date="viewDay"
-                @change="getEvents"
             ></v-calendar>
             <v-menu
                 v-model="selectedOpen"
@@ -147,6 +146,7 @@ import axios from "axios"
             events: [],
         }),
         mounted () {
+            this.getEvents()
             this.$refs.calendar.checkChange()
         },
         methods: {
@@ -182,25 +182,12 @@ import axios from "axios"
                 }
                 nativeEvent.stopPropagation()
             },
-            async getEvents({ start, end }){
-                const events = [];
-                await axios.get('http://localhost:3088/events/all')
-                .then(res=>{
+            getEvents(){
+                axios.get('http://localhost:3088/events/all')
+                .then((res)=>{
                     const result=res.data
                     console.log(result)
-                    start = new Date(this.result.start).toISOString().substring(0,10);
-                    end =  new Date(this.result.end).toISOString().substring(0,10);
-                    result.forEach(item => {
-                        events.push({
-                            name: this.item.name,
-                            start: this.item.start,
-                            end: this.item.end,
-                            color: this.item.color,
-                        })
-                        console.log(item.data);
-                    });
-                    this.events = events
-                   
+                    this.events = result
                 })
                 .catch(err=>{
                     console.log(err.message)

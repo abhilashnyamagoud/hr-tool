@@ -16,12 +16,21 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
+    // beforeEach(to, from, next){
+    //   from('/')
+    //   if(sessionStorage.length > 0){
+    //     next()
+    //   }else{
+    //     next('/')
+    //   }
+    // }
     
   },
   {

@@ -78,12 +78,11 @@
                 v-model="focus"
                 color="primary"
                 :events="events"
-                :event-color="getEventColor"
                 :type="type"
                 @click:event="showEvent"
                 @click:more="viewDay"
                 @click:date="viewDay"
-                @change="updateRange"
+                @change="getEvents"
             ></v-calendar>
             <v-menu
                 v-model="selectedOpen"
@@ -131,6 +130,7 @@
 </template>
 
 <script>
+import axios from "axios"
     export default {
         data: () => ({
             focus: '',
@@ -145,8 +145,6 @@
             selectedElement: null,
             selectedOpen: false,
             events: [],
-            colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-            names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
         }),
         mounted () {
             this.$refs.calendar.checkChange()
@@ -156,9 +154,6 @@
                 this.focus = date
                 this.type = 'day'
             },
-            getEventColor (event) {
-                return event.color
-            },
             setToday () {
                 this.focus = ''
             },
@@ -167,6 +162,10 @@
             },
             next () {
                 this.$refs.calendar.next()
+            },
+            addEvent () {
+                
+                
             },
             showEvent ({ nativeEvent, event }) {
                 const open = () => {
@@ -183,33 +182,29 @@
                 }
                 nativeEvent.stopPropagation()
             },
-            updateRange ({ start, end }) {
-                const events = []
-
-                const min = new Date(`${start.date}T00:00:00`)
-                const max = new Date(`${end.date}T23:59:59`)
-                const days = (max.getTime() - min.getTime()) / 86400000
-                const eventCount = this.rnd(days, days + 20)
-
-                for (let i = 0; i < eventCount; i++) {
-                    const allDay = this.rnd(0, 3) === 0
-                    const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-                    const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-                    const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-                    const second = new Date(first.getTime() + secondTimestamp)
-
-                    events.push({
-                        name: this.names[this.rnd(0, this.names.length - 1)],
-                        start: first,
-                        end: second,
-                        color: this.colors[this.rnd(0, this.colors.length - 1)],
-                        timed: !allDay,
-                    })
-                }
-                this.events = events
-            },
-            rnd (a, b) {
-                return Math.floor((b - a + 1) * Math.random()) + a
+            async getEvents({ start, end }){
+                const events = [];
+                await axios.get('http://localhost:3088/events/all')
+                .then(res=>{
+                    const result=res.data
+                    console.log(result)
+                    start = new Date(this.result.start).toISOString().substring(0,10);
+                    end =  new Date(this.result.end).toISOString().substring(0,10);
+                    result.forEach(item => {
+                        events.push({
+                            name: this.item.name,
+                            start: this.item.start,
+                            end: this.item.end,
+                            color: this.item.color,
+                        })
+                        console.log(item.data);
+                    });
+                    this.events = events
+                   
+                })
+                .catch(err=>{
+                    console.log(err.message)
+                })
             },
         },
     }

@@ -62,6 +62,14 @@
                 <v-list-item-title>Employees</v-list-item-title>
               </v-list-item>
             </router-link>
+            <router-link to="/projects">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-briefcase-outline</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>Projects</v-list-item-title>
+              </v-list-item>
+            </router-link>
              <router-link to="/leaveManagement">
               <v-list-item>
                 <v-list-item-icon>

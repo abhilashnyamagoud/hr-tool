@@ -86,10 +86,10 @@
         data(){
             return{
                 valid:true,
-                items:['Progress','Review','Test','Completed'],
+                items:[true,false],
                 title:'',
                 description:'',
-                status:'',
+                status:false,
                 dueDate:'',
                 titleRules:[
                      v => !!v || 'Project Name is required'

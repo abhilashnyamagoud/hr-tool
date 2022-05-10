@@ -70,6 +70,14 @@
                 <v-list-item-title>Projects</v-list-item-title>
               </v-list-item>
             </router-link>
+            <router-link to="/tasks">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-calendar-check</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>Tasks</v-list-item-title>
+              </v-list-item>
+            </router-link>
              <router-link to="/leaveManagement">
               <v-list-item>
                 <v-list-item-icon>

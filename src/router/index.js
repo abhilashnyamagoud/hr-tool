@@ -11,6 +11,8 @@ import Holidays from '../views/Holidays.vue'
 import AddHoliday from '../components/Holiday/AddHoliday.vue'
 import EventsCalender from '../components/Events/EventsCalender.vue'
 import Projects from '../views/Projects.vue'
+import Tasks from '../views/Tasks.vue'
+import AddTasks from '../components/Tasks/AddTasks.vue'
 
 Vue.use(VueRouter)
 
@@ -95,6 +97,34 @@ const routes = [
     path:'/projects',
     name:'Projects',
     component:Projects,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
+  },
+  {
+    path:'/tasks',
+    name:'Tasks',
+    component:Tasks,
+    beforeRouteEnter: (to, from, next) => {
+      let user = sessionStorage.getItem("token")
+      if(user){
+        from="/"
+        next()
+      }else{
+        to="/"
+      }
+    },
+  },
+  {
+    path:'/addtasks',
+    name:'AddTasks',
+    component:AddTasks,
     beforeRouteEnter: (to, from, next) => {
       let user = sessionStorage.getItem("token")
       if(user){
